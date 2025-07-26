@@ -1,0 +1,5 @@
+Tahapan,Jumlah Data,Persentase (%)
+Awal (Setelah Preprocessing),3750,100.0
+Setelah Split: Train,3000,80.0
+Setelah Split: Test,750,20.0
+Setelah SMOTE (Train),3772,100.59
