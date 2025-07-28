@@ -168,18 +168,26 @@ with tab2:
             plt.ylabel("")
             st.pyplot(plt.gcf())
     with dcol2:
-        st.markdown("#### Jumlah Tweet per Sentimen")
-        if filtered_df.empty:
-            st.info("Tidak ada data tersedia")
-        else:
-            fig, ax = plt.subplots(figsize=(6, 4))
+    st.markdown("#### Jumlah Tweet per Sentimen")
+    if filtered_df.empty:
+        st.info("Tidak ada data tersedia")
+    else:
+        fig, ax = plt.subplots(figsize=(6, 4))
+
+        # Buat plot
         bar_plot = sns.countplot(data=filtered_df, x='predicted_label', hue='model', ax=ax)
 
         # Tambahkan label jumlah di atas setiap batang
         for container in ax.containers:
-            ax.bar_label(container, fmt='%d', label_type='edge', fontsize=10)
+            ax.bar_label(container, fmt='%d', label_type='edge', fontsize=10, padding=2)
 
+        # Tambahkan judul
         ax.set_title("Jumlah Tweet per Sentimen")
+
+        # Tata letak agar tidak terpotong
+        plt.tight_layout()
+
+        # Tampilkan di Streamlit
         st.pyplot(fig)
 
     # WORD CLOUD
