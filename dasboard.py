@@ -172,10 +172,18 @@ with tab2:
         if filtered_df.empty:
             st.info("Tidak ada data tersedia")
         else:
-            plt.figure(figsize=(6, 4))
-            sns.countplot(data=filtered_df, x='predicted_label', hue='model')
-            plt.title("")
-            st.pyplot(plt.gcf())
+            fig, ax = plt.subplots(figsize=(6, 4))
+
+             # Buat plot
+            bar_plot = sns.countplot(data=filtered_df, x='predicted_label', hue='model', ax=ax)
+
+        # Tambahkan label jumlah
+            for container in ax.containers:
+                ax.bar_label(container, fmt='%d', label_type='edge', fontsize=10, padding=2)
+
+            ax.set_title("Jumlah Tweet per Sentimen")
+            plt.tight_layout()
+            st.pyplot(fig)
 
     # WORD CLOUD
     st.write("")
